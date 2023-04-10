@@ -20,10 +20,30 @@ const CountersList = () => {
         console.log("handle reset");
     };
 
+    const handleIncrement = (id) => {
+        const incrementedArray = counters.map((item) => {
+            if (item.id === id) {
+                item.value++
+            }
+            return item
+        })
+        setCounters(incrementedArray)
+    }
+
+    const handleDecrement = (id) => {
+        const decrementedArray = counters.map((item) => {
+            if (item.id === id) {
+                item.value--
+            }
+            return item
+        })
+        setCounters(decrementedArray)
+    }
+
     return (
         <>
             {counters.map((count) => (
-                <Counter key={count.id} onDelete={handleDelete} {...count} />
+                <Counter key={count.id} onDelete={handleDelete} onIncrement={handleIncrement} onDecrement={handleDecrement} {...count} />
             ))}
             <button
                 className='btn btn-primary btn-sm m-2'
